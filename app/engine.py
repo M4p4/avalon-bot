@@ -9,7 +9,7 @@ def background_checker():
     client = web3client.Web3client(app.config['CHECKER_NODE'])
     while (True):
         try:
-            print("working")
+            client.save_vaults()
         except:
             client.reconnect(app.config['CHECKER_NODE'])
             logging.log(logging.CRITICAL, "[Error] parsing contracts")

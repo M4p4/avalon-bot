@@ -29,3 +29,15 @@ class Web3client():
         self.web3 = Web3(Web3.HTTPProvider(self.web3_node))
 
     def save_vaults(self):
+        info_facade = self.web3.eth.contract(address=self.web3.toChecksumAddress(self.info_facade_addr),
+                                                abi=self.info_facade_abi)
+
+        res = info_facade.functions.getSavableVaults().call()
+        addresses = res[0]
+        # any one needs help?
+        if len(addresses) > 0:
+            vault_saver = self.web3.eth.contract(address=self.web3.toChecksumAddress(self.vault_saver_addr),
+                                                 abi=self.vault_saver_abi)
+            for address in addresses:
+                logging.log(logging.CRITICAL, "Saving Vault {0}".format(address))
+                vault_saver.functions.saveVault(self.web3.toChecksumAddress(address)).call()

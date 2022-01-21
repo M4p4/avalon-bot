@@ -483,5 +483,23 @@
     ],
     "stateMutability": "view",
     "type": "function"
-  }
+  },
+  {
+      "inputs": [],
+      "name": "getSavableVaults",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "addresses",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "incentives",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
 ]

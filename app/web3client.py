@@ -41,3 +41,5 @@ class Web3client():
             for address in addresses:
                 logging.log(logging.CRITICAL, "Saving Vault {0}".format(address))
                 vault_saver.functions.saveVault(self.web3.toChecksumAddress(address)).call()
+        else:
+            logging.log(logging.CRITICAL, "No Vault needs to be saved.")

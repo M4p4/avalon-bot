@@ -3,13 +3,16 @@ from app import app
 from web3 import Web3
 import logging
 import json
+import os
+from dotenv import load_dotenv
 
 
 class Web3client:
     def __init__(self, web3_node):
+        load_dotenv()
         self.web3_node = web3_node
         self.web3 = Web3(Web3.HTTPProvider(self.web3_node))
-        self.wallet = self.web3.eth.account.privateKeyToAccount(config.Config.PK)
+        self.wallet = self.web3.eth.account.privateKeyToAccount(os.getenv('PK'))
 
         with open('./app/static/abis/info_facade.json') as f:
             self.info_facade_abi = json.loads(f.read())
